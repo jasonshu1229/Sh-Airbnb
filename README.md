@@ -8,6 +8,7 @@
 
 ### 建立目录结构
 
+```shell
 sh_airbnb
 ├─ .vscode                # vscode推荐配置
 ├─ public                 # 静态资源文件（忽略打包）
@@ -31,6 +32,7 @@ sh_airbnb
 ├─ package.json           # 依赖包管理
 ├─ README.md              # README 介绍
 └─ vite.config.ts         # vite 配置
+```
 
 ### 使用standard-version发版与Changelog同步
 
