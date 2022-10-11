@@ -16,7 +16,7 @@ export const CenterWrapper = styled.div`
     
     .text {
       padding: 0 16px;
-      font-weight: 600;
+      font-weight: 500;
     }
     
     .icon {
