@@ -1,7 +1,7 @@
 import styled from "styled-components";
 
 export const ItemWrapper = styled.div`
-  width: 25%;
+  width: ${props => props.itemWidth};
   padding: 8px;
   box-sizing: border-box;
   

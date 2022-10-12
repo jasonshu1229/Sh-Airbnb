@@ -1,5 +1,5 @@
 import { createSlice, createAsyncThunk } from '@reduxjs/toolkit';
-import {getHomeGoodPriceData, getHomeScoreData} from "@/services";
+import {getHomeDiscountData, getHomeGoodPriceData, getHomeScoreData} from "@/services";
 
 export const fetchHomeDataAction = createAsyncThunk("fetchdata", (payload,{ dispatch }) => {
   // 这样写会把请求数据同步进行，有顺序延迟，而在这里一起请求就好，不要求哪一个数据回来的先后顺序
@@ -11,18 +11,20 @@ export const fetchHomeDataAction = createAsyncThunk("fetchdata", (payload,{ disp
   getHomeGoodPriceData().then(res => {
     dispatch(changeGoodPriceInfoAction(res))
   });
-  
   getHomeScoreData().then(res => {
     dispatch(changeHighScoreInfoAction(res));
   })
-  
+  getHomeDiscountData().then(res => {
+    dispatch(changeDiscountInfoAction(res))
+  })
 })
 
 const homeSlice = createSlice({
   name: 'home',
   initialState: {
     goodPriceInfo: {},
-    highScoreInfo: {}
+    highScoreInfo: {},
+    discountInfo: {},
   },
   reducers: {
     changeGoodPriceInfoAction(state, { payload }) {
@@ -31,6 +33,9 @@ const homeSlice = createSlice({
     },
     changeHighScoreInfoAction(state, { payload }) {
       state.highScoreInfo = payload;
+    },
+    changeDiscountInfoAction(state, { payload }) {
+      state.discountInfo = payload;
     }
   },
   // extraReducers: {
@@ -41,6 +46,6 @@ const homeSlice = createSlice({
   // }
 })
 
-export const { changeGoodPriceInfoAction, changeHighScoreInfoAction } = homeSlice.actions;
+export const { changeGoodPriceInfoAction, changeHighScoreInfoAction, changeDiscountInfoAction } = homeSlice.actions;
 
 export default homeSlice.reducer;
