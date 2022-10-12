@@ -9,6 +9,7 @@ import './assets/css/index.less';
 import 'normalize.css';
 import store from "@/store";
 import theme from "@/assets/theme";
+import 'antd/dist/antd.less';
 
 const root = ReactDOM.createRoot(document.getElementById('root'));
 root.render(
