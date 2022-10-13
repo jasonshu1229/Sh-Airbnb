@@ -1,4 +1,4 @@
-import React, {memo, useCallback, useEffect, useState} from 'react'
+import React, {memo, useEffect } from 'react'
 
 import {HomeWrapper} from "@/views/home/style";
 import HomeBanner from "@/views/home/c-cpns/home-banner";
@@ -9,10 +9,11 @@ import HomeSectionV2 from "@/views/home/c-cpns/home-section-v2";
 import {isEmptyObject} from "@/utils";
 
 const Home = memo(() => {
-  const { goodPriceInfo, highScoreInfo, discountInfo } = useSelector((state) => ({
+  const { goodPriceInfo, highScoreInfo, discountInfo, recommendInfo } = useSelector((state) => ({
     goodPriceInfo: state.home.goodPriceInfo,
     highScoreInfo: state.home.highScoreInfo,
-    discountInfo: state.home.discountInfo
+    discountInfo: state.home.discountInfo,
+    recommendInfo: state.home.recommendInfo
   }), shallowEqual);
   
   
@@ -26,6 +27,8 @@ const Home = memo(() => {
       <HomeBanner />
       <div className='content'>
         { isEmptyObject(discountInfo) && <HomeSectionV2 infoData={discountInfo} /> }
+        { isEmptyObject(recommendInfo) && <HomeSectionV2 infoData={recommendInfo} /> }
+
         { isEmptyObject(goodPriceInfo) && <HomeSectionV1 infoData={goodPriceInfo} /> }
         { isEmptyObject(highScoreInfo) && <HomeSectionV1 infoData={highScoreInfo} /> }
       </div>
