@@ -6,8 +6,6 @@ import {RoomsWrapper} from "@/components/section-rooms/style";
 const SectionRooms = memo((props) => {
   const { roomList  = [], itemWidth } = props;
   
-  console.log(itemWidth)
-  
   return (
     <RoomsWrapper className='room-list'>
       {
