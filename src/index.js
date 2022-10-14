@@ -5,11 +5,11 @@ import { Provider } from 'react-redux';
 import { ThemeProvider } from 'styled-components';
 
 import App from '@/App';
-import './assets/css/index.less';
 import 'normalize.css';
+import 'antd/dist/antd.less';
+import './assets/css/index.less';
 import store from "@/store";
 import theme from "@/assets/theme";
-import 'antd/dist/antd.less';
 
 const root = ReactDOM.createRoot(document.getElementById('root'));
 root.render(
