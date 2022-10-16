@@ -10,7 +10,7 @@ const Entire = memo(() => {
   
   const dispatch = useDispatch();
   useEffect(() => {
-    dispatch(fetchEntireDataAction("xxx"))
+    dispatch(fetchEntireDataAction())
   }, [dispatch])
   
   return (

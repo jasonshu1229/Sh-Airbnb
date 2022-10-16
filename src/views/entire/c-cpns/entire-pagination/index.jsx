@@ -17,14 +17,17 @@ const EntirePagination = memo(() => {
   
   const dispatch = useDispatch();
   const pageChangeHandle = (event, activePageCount) => {
-    dispatch(changeCurrentPageAction(activePageCount));
-    dispatch(fetchEntireDataAction());
+    // dispatch(changeCurrentPageAction(activePageCount));
+    // dispatch(fetchEntireDataAction());
+
+    // 替换成
+    dispatch(fetchEntireDataAction(activePageCount - 1))
   }
   
   return (
     <PaginationWrapper>
       {
-        roomList.length && (
+        !!roomList.length && (
           <div className='info'>
             <Pagination count={totalPage} onChange={pageChangeHandle} />
             <div className='desc'>
