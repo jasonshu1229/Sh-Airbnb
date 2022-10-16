@@ -74,6 +74,13 @@ const homeSlice = createSlice({
   // }
 })
 
-export const { changeGoodPriceInfoAction, changeHighScoreInfoAction, changeDiscountInfoAction, changeRecommendInfoAction, changeLongforInfoAction, changePlusInfoAction } = homeSlice.actions;
+export const {
+  changeGoodPriceInfoAction,
+  changeHighScoreInfoAction,
+  changeDiscountInfoAction,
+  changeRecommendInfoAction,
+  changeLongforInfoAction,
+  changePlusInfoAction
+} = homeSlice.actions;
 
 export default homeSlice.reducer;
