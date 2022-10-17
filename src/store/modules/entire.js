@@ -11,7 +11,9 @@ export const fetchEntireDataAction = createAsyncThunk(
   
   // 2. 根据页码获取最新的数据
   // const currentPage = getState().entire.currentPage;
+  dispatch(changeIsLoadingAction(true))
   const res = await getEntireRoomList(payload * 20);
+  dispatch(changeIsLoadingAction(false))
   
   // 3. 获取到最新的数据，保存 redux 的 store中
   const roomList = res.list;
@@ -27,7 +29,8 @@ const entireSlice = createSlice({
   initialState: {
     currentPage: 0,
     roomList: [],
-    totalCount: 0
+    totalCount: 0,
+    isLoading: false
   },
   reducers: {
     changeCurrentPageAction(state, { payload }) {
@@ -38,6 +41,9 @@ const entireSlice = createSlice({
     },
     changeTotalCountAction(state, { payload }) {
       state.totalCount = payload;
+    },
+    changeIsLoadingAction(state, { payload }) {
+      state.isLoading = payload;
     }
   },
   extraReducers: {
@@ -52,7 +58,8 @@ const entireSlice = createSlice({
 export const {
   changeCurrentPageAction,
   changeRoomListAction,
-  changeTotalCountAction
+  changeTotalCountAction,
+  changeIsLoadingAction
 } = entireSlice.actions;
 
 export default entireSlice.reducer;
