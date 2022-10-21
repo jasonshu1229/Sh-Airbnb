@@ -1,9 +1,15 @@
 import React, {memo} from 'react';
+import {shallowEqual, useSelector} from "react-redux";
 
-const Detail = memo(() => {
+const Detail = memo((props) => {
+  
+  const { detailInfo } = useSelector((state) => ({
+    detailInfo: state.detail.detailInfo
+  }), shallowEqual)
+  
   return (
     <div>
-      Detail
+      { detailInfo.name }
     </div>
   );
 });
