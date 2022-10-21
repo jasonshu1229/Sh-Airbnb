@@ -1,16 +1,15 @@
 import React, {memo} from 'react';
-import {shallowEqual, useSelector} from "react-redux";
+import {DetailWrapper} from "@/views/detail/style";
+import DetailPictures from "@/views/detail/c-cpns/detail-pictures";
+import DetailInfos from "@/views/detail/c-cpns/detail-infos";
 
 const Detail = memo((props) => {
   
-  const { detailInfo } = useSelector((state) => ({
-    detailInfo: state.detail.detailInfo
-  }), shallowEqual)
-  
   return (
-    <div>
-      { detailInfo.name }
-    </div>
+    <DetailWrapper>
+      <DetailPictures />
+      <DetailInfos />
+    </DetailWrapper>
   );
 });
 
