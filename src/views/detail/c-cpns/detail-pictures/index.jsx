@@ -1,11 +1,25 @@
-import React, {memo} from 'react';
+import React, {memo, useEffect, useState} from 'react';
 import {PicturesWrapper} from "@/views/detail/c-cpns/detail-pictures/style";
 import {useSelector} from "react-redux";
+import PictureBrowser from "@/base-ui/picture-browser";
 
 const DetailPictures = memo(() => {
+  // 定义组件内部的状态
+  const [showBrowser, setShowBrowser] = useState(true);
+  
+  // 从 RTK 中获取数据
   const { detailInfo } = useSelector((state) => ({
     detailInfo: state.detail.detailInfo
   }))
+  
+  // 当图片浏览器展示出来时，滚动的功能消失
+  useEffect(() => {
+    document.body.style.overflow = 'hidden';
+    
+    return () => {
+      document.body.style.overflow = 'auto';
+    }
+  }, [])
   
   return (
     <PicturesWrapper>
@@ -29,6 +43,15 @@ const DetailPictures = memo(() => {
           }
         </div>
       </div>
+    
+      <div className='show-btn' onClick={e => setShowBrowser(true)}>显示照片</div>
+      { showBrowser &&
+        <PictureBrowser
+          pictureUrls={detailInfo.picture_urls}
+          closeClick={e => setShowBrowser(false)}
+        />
+      }
+      
     </PicturesWrapper>
   );
 });
