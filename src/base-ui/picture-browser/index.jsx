@@ -1,5 +1,7 @@
 import React, {memo, useEffect, useState} from 'react';
 import PropTypes from 'prop-types';
+import { CSSTransition, SwitchTransition } from 'react-transition-group';
+
 import {BrowserWrapper} from "@/base-ui/picture-browser/style";
 import IconClose from "@/assets/svg/icon-close";
 import IconArrowRight from "@/assets/svg/icon-arrow-right";
@@ -8,6 +10,7 @@ import IconArrowLeft from "@/assets/svg/icon-arrow-left";
 const PictureBrowser = memo((props) => {
   const { pictureUrls, closeClick } = props;
   const [currentIndex, setCurrentIndex] = useState(0);
+  const [isNext, setIsNext] = useState(true);
   
   // 当图片浏览器展示出来时，滚动的功能消失
   useEffect(() => {
@@ -27,10 +30,11 @@ const PictureBrowser = memo((props) => {
     if (newIndex > pictureUrls.length - 1) newIndex = 0;
     
     setCurrentIndex(newIndex);
+    setIsNext(isNext)
   }
   
   return (
-    <BrowserWrapper>
+    <BrowserWrapper isNext={isNext}>
       <div className='top'>
         <div className='close-btn' onClick={closedBtnClickHandle}>
           <IconClose />
@@ -46,7 +50,15 @@ const PictureBrowser = memo((props) => {
           </div>
         </div>
         <div className='picture'>
-          <img src={pictureUrls[currentIndex]} alt="" />
+          <SwitchTransition>
+            <CSSTransition
+              key={pictureUrls[currentIndex]}
+              classNames="pic"
+              timeout={200}
+            >
+              <img src={pictureUrls[currentIndex]} alt="" />
+            </CSSTransition>
+          </SwitchTransition>
         </div>
       </div>
       <div className='preview'></div>
@@ -55,7 +67,8 @@ const PictureBrowser = memo((props) => {
 });
 
 PictureBrowser.propTypes = {
-
+  pictureUrls: PropTypes.array,
+  closeClick: PropTypes.func
 };
 
 export default PictureBrowser;

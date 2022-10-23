@@ -56,6 +56,7 @@ export const BrowserWrapper = styled.div`
       width: 100%;
       height: 100%;
       max-width: 105vh;
+      overflow: hidden;
       
       img {
         position: absolute;
@@ -66,6 +67,27 @@ export const BrowserWrapper = styled.div`
         height: 100%;
         user-select: none;
         object-fit: cover;
+      }
+      
+      /** 图片切换的动画的样式  */
+      .pic-enter {
+        transform: translateX(${props => props.isNext ? "100%" : "-100%"});
+        opacity: 0
+      }
+      
+      .pic-enter-active {
+        transform: translateX(0);
+        opacity: 1;
+        transition: all 200ms ease;
+      }
+      
+      .pic-exit {
+        opacity: 1;
+      }
+      
+      .pic-exit-active {
+        opacity: 0;
+        transition: all 200ms ease;
       }
     }
   }
