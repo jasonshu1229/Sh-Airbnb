@@ -5,7 +5,7 @@ import PictureBrowser from "@/base-ui/picture-browser";
 
 const DetailPictures = memo(() => {
   // 定义组件内部的状态
-  const [showBrowser, setShowBrowser] = useState(true);
+  const [showBrowser, setShowBrowser] = useState(false);
   
   // 从 RTK 中获取数据
   const { detailInfo } = useSelector((state) => ({
